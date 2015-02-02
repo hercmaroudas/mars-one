@@ -1,0 +1,101 @@
+﻿<!doctype html>
+<html lang="en" ng-app>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--link rel="stylesheet" href="./css/bootstrap.min.css" -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  
+  <title>Mars Missions</title>
+  <script src="./scripts/angular.min.js"></script>
+</head>
+
+<body ng-controller="MissionsController">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="/mars">Mars One</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a>
+          </li>
+          <li><a href="./missions.html">Past Missions</a>
+          </li>
+          <li><a href="#">Page 2</a>
+          </li>
+          <li><a href="#">Page 3</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="col-sm-2">Year:</td>
+              <td>{{currentMission.year}}</td>
+            </tr>
+            <tr>
+              <td class="col-sm-2">Name:</td>
+              <td>{{currentMission.name}}</td>
+            </tr>
+            <tr>
+              <td class="col-sm-2">Country:</td>
+              <td>{{currentMission.country}}</td>
+            </tr>
+            <tr>
+              <td class="col-sm-2">Result:</td>
+              <td ng-class="{ success: currentMission.result == 'Success',  danger: currentMission.result == 'Failure', warning: currentMission.result == 'Success/Failure'}">{{currentMission.result}}</td>
+            </tr>
+            <tr>
+              <td class="col-sm-2">Type:</td>
+              <td>{{currentMission.type}}</td>
+            </tr>
+            <tr>
+              <td class="col-sm-2">Notes:</td>
+              <td>{{currentMission.notes}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        <button class="btn btn-info btn-md" ng-click="prevMission()" style="width: 80px;">Previous</button>
+        <button class="btn btn-info btn-md" ng-click="nextMission()" style="width: 80px;">Next</button>
+
+      </div>
+
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        Successes: 18 (42%), Failures: 23 (53%), Partial Success: 2 (5%)
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="scripts/controllers/MissionsController.js">
+  </script>
+</body>
+
+</html>

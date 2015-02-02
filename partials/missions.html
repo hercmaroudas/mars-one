@@ -1,0 +1,100 @@
+<form name="missionsForm">
+<div class="row">
+
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="col-sm-2">Year:</td>
+              <td>{{currentMission.year}}</td>
+            </tr>
+            <tr>
+              <td class="col-sm-2">Name:</td>
+              <td>{{currentMission.name}}</td>
+            </tr>
+            <tr>
+              <td class="col-sm-2">Country:</td>
+              <td ng-bind-html="countryFlag"></td>
+            </tr>
+            <tr ng-switch on="quizMode">
+              <td class="col-sm-2">Result:</td>
+              <td ng-switch-when="false" ng-class="{ success: currentMission.result == 'Success',  danger: currentMission.result == 'Failure', warning: currentMission.result == 'Success/Failure'}">{{currentMission.result}}</td>
+              <td ng-switch-when="true" >
+					<input type="radio" name="userAnswer" ng-model="$parent.userAnswer" value="Success"> Success 
+					<input type="radio" name="userAnswer" ng-model="$parent.userAnswer" value="Failure"> Failure 
+					<input type="radio" name="userAnswer" ng-model="$parent.userAnswer" value="Success/Failure"> Success/Failure</td>
+              <td ng-switch-default="true" ng-class="{ success: currentMission.result == 'Success',  danger: currentMission.result == 'Failure', warning: currentMission.result == 'Success/Failure'}">{{currentMission.result}}</td>
+            </tr>
+            <tr>
+              <td class="col-sm-2">Type:</td>
+              <td>{{currentMission.type}}</td>
+            </tr>
+            <tr>
+              <td class="col-sm-2">Notes:</td>
+              <td>{{currentMission.notes}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+	  
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        <button class="btn btn-info btn-md" ng-click="prevMission()" ng-disabled="quizMode" style="width: 80px;">Previous</button>
+        <button class="btn btn-info btn-md" ng-click="nextMission()" style="width: 80px;">Next</button>
+		<input type="checkbox" ng-model="quizMode" name="mode" id="mode" ng-click="restartInQuizMode()"><label for="quizMode">Quiz Mode</label>
+      </div>
+
+    </div>
+	</form>
+	<div class="row">
+	<div class="table-responsive">
+        <table class="table">
+          <thead>
+			<th class="col-sm-2 col-md-2">Result</th>
+			<th class="col-sm-1 col-md-1"><img src="/mars/images/flags/ussr.png" class="img-responsive" title="USSR"/></th>
+			<th class="col-sm-1 col-md-1"><img src="/mars/images/flags/us.png" class="img-responsive" title="US"/></th>
+			<th class="col-sm-1 col-md-1"><img src="/mars/images/flags/jp.png" class="img-responsive" title="Japan"/></th>
+			<th class="col-sm-1 col-md-1"><img src="/mars/images/flags/ru.png" class="img-responsive" title="Russia"/><img src="/mars/images/flags/cn.png" class="img-responsive" title="China"/></th>
+			<th class="col-sm-1 col-md-1"><img src="/mars/images/flags/eu.png" class="img-responsive" title="ESA"/></th>
+			<th class="col-sm-1 col-md-1"><img src="/mars/images/flags/in.png" class="img-responsive" title="India"/></th>
+			<th class="col-sm-1 col-md-1">Total (%)</th>
+		  </thead>
+			<tr>
+				<td>Success</td>
+				<td>2</td>
+				<td>15</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>1</td>
+				<td>18 (42%)</td>
+			</tr>
+			<tr>
+				<td>Failures</td>
+				<td>14</td>
+				<td>6</td>
+				<td>1</td>
+				<td>2</td>
+				<td>-</td>
+				<td>-</td>
+				<td>23 (53%)</td>
+			</tr>
+			<tr>
+				<td>Success/Failure</td>
+				<td>1</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>1</td>
+				<td>-</td>
+				<td>2 (5%)</td>
+			</tr>
+			
+		  <tbody>
+		  </tbody>
+		 </table>
+	</div>
+	</div>
+

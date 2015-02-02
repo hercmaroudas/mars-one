@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<style type="text/css">
+
+	.marsSystem {
+		background: black;
+		width: 600px;
+		height: 200px;
+	}
+	
+	.mars {
+		position: absolute;
+		width: 1em;
+		height: 1em;
+		border-radius: 0.5em;
+		background-color: red;
+		left: 0px;
+		bottom: 50%;
+	}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="marsSystem">
+	<div class="mars"></div>
+	</div>
+<script>
+(function() {
+
+  window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+  var marsSystem = $(".marsSystem");
+  var mars = $(".mars");
+
+  var maxX = marsSystem.outerWidth() - mars.offset().left;
+  var maxY = marsSystem.outerHeight() - mars.offset().top;
+
+  var duration = 4; // seconds
+  var gridSize = 100; // pixels
+
+  var start = null;
+  var stretchFactor;
+
+  function step(timestamp)
+  {
+    var progress, x, y;
+    if(start === null) {
+      start = timestamp;
+      stretchFactor = 3;
+    }
+
+    progress = (timestamp - start) / duration / 1000; // percent
+
+    x = stretchFactor * Math.sin(progress * 2 * Math.PI); // x = ƒ(t)
+    y = Math.cos(progress * 2 * Math.PI); // y = ƒ(t)
+	
+	console.log('maxX = ' + maxX + ' maxY= ' + maxY);
+
+    $(".mars").offset().left = maxX/2 + (gridSize * x);
+    $(".mars").offset().top = maxY/2 + (gridSize * y);
+
+    if(progress >= 1) start = null; // reset to start position
+    requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+
+})();
+
+
+</script>
+</body>
+
+</html>
